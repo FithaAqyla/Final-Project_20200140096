@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>UAS PWS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <div>Daftar Kue</div>
+        <br/><hr>
+        <br>
+        <td>Id<td/>
+        <td>:<td/>
+        <td><input type="text" id="id" name="id"><td/><!-- comment -->
+        <br/>
+         <br>
+        <td>Nama<td/>
+        <td>:<td/>
+        <td><input type="text" id="nama" name="nama"><td/><!-- comment -->
+        
+        <br/>
+         <br>
+        <td>Jumlah<td/>
+        <td>:<td/>
+        <input type="text" id="jumlah" name="jumlah"><!-- comment -->
+        <br/>
+        <br>
+        <td>Gambar<td/>
+        <td>:<td/>
+        <input type="file" file="gambar"><!-- comment -->
+        <br/>
+        
+        
+        
+        <script>
+			const url = "http://localhost:8082/menu";
+			function post(){
+				let newID = document.getElementById("id").value;
+        			let name = document.getElementById("nama").value;
+//				let jumlahh = document.getElementById("jumlah").value;
+				let dataText = {"id":newID,"nama":name};
+				let dataJson = JSON.stringify(dataText);
+				$.ajax({
+					url: url,
+					method: 'POST',
+					data: dataJson,
+					contentType: 'application/json',
+					dataType: 'text',
+					success: function(result){
+						console.log(result);
+					}
+				});
+			}
+			
+			function put(){
+				const urlp = "http://localhost:8082/menu";
+				let newID = document.getElementById("id").value;
+				let name = document.getElementById("nama").value;
+//				let jumlahh = document.getElementById("jumlah").value;
+				let dataText = {"id":newID,"nama":name};
+				let dataJson = JSON.stringify(dataText);
+				$.ajax({
+					url: urlp,
+					method: 'PUT',
+					data: dataJson,
+					contentType: 'application/json',
+					dataType: 'text',
+					success: function(result){
+						document.getElementById("viewer").innerHTML = result;
+
+					}
+				});
+			}
+			
+			function get(){
+				const urlg = "http://localhost:8082/menu";
+				$.ajax({
+					url: urlg,
+					method: 'GET',
+					dataType: 'text',
+					success: function(result){
+						document.getElementById("viewer").innerHTML = result;
+					}
+				});
+			}
+			
+			function delID(){
+				const url = "http://localhost:8082/menu";
+				let newID = document.getElementById("id").value;
+				let name = document.getElementById("nama").value;
+				//let jumlahh = document.getElementById("jumlah").value;
+				let dataText = {"id":newID,"name":name};
+				let dataJson = JSON.stringify(dataText);
+				$.ajax({
+					url: url,
+					method: 'DELETE',
+					data: dataJson,
+					contentType: 'application/json',
+					dataType: 'text',
+					success: function(result){
+						document.getElementById("viewer").innerHTML = result;
+					}
+				});
+			}
+                </script>
+        <br><hr>
+                      <button onclick="get()">Get Data</button>
+                      <button onclick="post()">Post Data</button>
+                      <button onclick="put()">Put Data</button>
+                      <button onclick="delID()">Delete Data</button>
+                      <div id="viewer"></div>
+    </body>
+    
+</html>
