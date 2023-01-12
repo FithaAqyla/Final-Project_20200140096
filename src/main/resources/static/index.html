@@ -43,8 +43,8 @@ and open the template in the editor.
 			function post(){
 				let newID = document.getElementById("id").value;
         			let name = document.getElementById("nama").value;
-//				let jumlahh = document.getElementById("jumlah").value;
-				let dataText = {"id":newID,"nama":name};
+    				let jumlahh = document.getElementById("jumlah").value;
+                                let dataText = {"id":newID,"name":name, "jumlah":jumlahh};
 				let dataJson = JSON.stringify(dataText);
 				$.ajax({
 					url: url,
@@ -62,8 +62,8 @@ and open the template in the editor.
 				const urlp = "http://localhost:8082/menu";
 				let newID = document.getElementById("id").value;
 				let name = document.getElementById("nama").value;
-//				let jumlahh = document.getElementById("jumlah").value;
-				let dataText = {"id":newID,"nama":name};
+				let jumlahh = document.getElementById("jumlah").value;
+                                let dataText = {"id":newID,"name":name, "jumlah":jumlahh};
 				let dataJson = JSON.stringify(dataText);
 				$.ajax({
 					url: urlp,
@@ -94,8 +94,8 @@ and open the template in the editor.
 				const url = "http://localhost:8082/menu";
 				let newID = document.getElementById("id").value;
 				let name = document.getElementById("nama").value;
-				//let jumlahh = document.getElementById("jumlah").value;
-				let dataText = {"id":newID,"name":name};
+				let jumlahh = document.getElementById("jumlah").value;
+				let dataText = {"id":newID,"name":name, "jumlah":jumlahh};
 				let dataJson = JSON.stringify(dataText);
 				$.ajax({
 					url: url,
